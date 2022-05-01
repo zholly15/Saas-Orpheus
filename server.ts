@@ -1,5 +1,11 @@
-const world = 'world';
+import * as path from 'path';
+import * as express from 'express';
+import * as logger from 'morgan';
+import * as mongodb from 'mongodb';
+import * as url from 'url';
+import * as bodyParser from 'body-parser';
+import {App} from './App';
 
-export function hello(): string {
-  return `Hello ${world}! `;
-}
+let server: any = new App().expressApp;
+server.listen(8080);
+console.log('server running in port: 8080');
