@@ -30,6 +30,7 @@ exports.App = void 0;
 const express_1 = __importDefault(require("express"));
 const bodyParser = __importStar(require("body-parser"));
 const SpotifyTestModel_1 = require("./model/SpotifyTestModel");
+const ListModel_1 = require("./model/ListModel");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
@@ -38,6 +39,7 @@ class App {
         this.middleware();
         this.routes();
         this.Albums = new SpotifyTestModel_1.SpotifyModel();
+        this.List = new ListModel_1.ListModel();
     }
     // Configure Express middleware.
     middleware() {
@@ -47,8 +49,11 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express_1.default.Router();
-        router.get('/', (req, res) => {
+        router.get('/spotify', (req, res) => {
             this.Albums.retrieveAllLists(res);
+        });
+        router.get('/lists', (req, res) => {
+            this.List.retrieveAllLists(res);
         });
         this.expressApp.use('/', router);
     }
