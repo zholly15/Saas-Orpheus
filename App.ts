@@ -2,6 +2,7 @@ import express from 'express';
 import * as bodyParser from 'body-parser';
 import {SpotifyModel} from './model/SpotifyTestModel';
 import * as crypto from 'crypto';
+import { ListModel } from './model/ListModel';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -9,6 +10,7 @@ class App {
   // ref to Express instance
   public expressApp: express.Application;
   public Albums:SpotifyModel;
+  public List:ListModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -16,6 +18,7 @@ class App {
     this.middleware();
     this.routes();
     this.Albums = new SpotifyModel();
+    this.List = new ListModel();
   }
 
   // Configure Express middleware.
@@ -28,8 +31,12 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/', (req, res)=>{
+    router.get('/spotify', (req, res)=>{
       this.Albums.retrieveAllLists(res);
+    })
+
+    router.get('/lists', (req, res) => {
+      this.List.retrieveAllLists(res);
     })
 
 
