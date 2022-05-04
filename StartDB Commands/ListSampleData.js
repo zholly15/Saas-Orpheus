@@ -8,7 +8,6 @@ collection.insert(
     albumIds: ['6e57517a-4ba6-4052-a7af-f816cdd9b89b', '2e6cde38-bccd-4cb5-ba19-d71a0a8014e2', 'ad4e0f4b-d6c5-4e35-80df-bd5681fb6d10'],
     name: "RockNRoll",
     description:"Cool music",
-    nope:"hi",
 }
 )
 collection.insert(
