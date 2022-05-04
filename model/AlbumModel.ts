@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import {ISpotifyModel} from '../interfaces/ISpotifyModel';
+import {IAlbumModel} from '../interfaces/IAlbumModel';
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class SpotifyModel {
+class AlbumModel {
     public schema:any;
     public model:any;
 
@@ -26,7 +26,7 @@ class SpotifyModel {
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<ISpotifyModel>("albums", this.schema);
+        this.model = mongooseConnection.model<IAlbumModel>("albums", this.schema);
     }
 
     public retrieveAllAlbums(response:any): any {
@@ -53,4 +53,4 @@ class SpotifyModel {
     }
 
 }
-export {SpotifyModel};
+export {AlbumModel};

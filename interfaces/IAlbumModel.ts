@@ -1,8 +1,8 @@
 import Mongoose = require("mongoose");
 
-interface ISpotifyModel extends Mongoose.Document {
+interface IAlbumModel extends Mongoose.Document {
     name: string;
     album: string;
     _id: string;
 }
-export {ISpotifyModel};
+export {IAlbumModel};
