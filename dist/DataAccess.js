@@ -18,6 +18,6 @@ class DataAccess {
     }
 }
 exports.DataAccess = DataAccess;
-DataAccess.DB_CONNECTION_STRING = 'mongodb://localhost:27017/Orpheus';
+DataAccess.DB_CONNECTION_STRING = 'mongodb://localhost:3000';
 DataAccess.connect();
 //# sourceMappingURL=DataAccess.js.map

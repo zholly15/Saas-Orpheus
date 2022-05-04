@@ -32,6 +32,7 @@ const bodyParser = __importStar(require("body-parser"));
 const SpotifyTestModel_1 = require("./model/SpotifyTestModel");
 const crypto = __importStar(require("crypto"));
 const ListModel_1 = require("./model/ListModel");
+const UserModel_1 = require("./model/UserModel");
 // Creates and configures an ExpressJS web server.
 class App {
     // Spotify stuff
@@ -63,6 +64,7 @@ class App {
         this.routes();
         this.Albums = new SpotifyTestModel_1.SpotifyModel();
         this.List = new ListModel_1.ListModel();
+        this.User = new UserModel_1.UserModel();
     }
     // Configure Express middleware.
     middleware() {
@@ -103,8 +105,10 @@ class App {
             });
             let doc = new this.Albums.model(jsonObj);
             doc.save((err) => {
-                if (err)
+                if (err) {
                     console.log('object creation failed');
+                    res.status(400);
+                }
             });
             res.send(jsonObj);
         });
@@ -127,10 +131,37 @@ class App {
             jsonObj.albumIds = [];
             const doc = new this.List.model(jsonObj);
             doc.save((err) => {
-                if (err)
+                if (err) {
                     console.log("Object creation failed");
+                    res.status(400);
+                }
             });
-            res.send(jsonObj);
+            res.status(200).json(jsonObj);
+        });
+        // POST to create user
+        router.post('/users/createUser', (req, res) => {
+            const id = crypto.randomBytes(16).toString("hex");
+            console.log(req.body);
+            const jsonObj = req.body;
+            const doc = new this.User.model(jsonObj);
+            doc.save((err) => {
+                if (err) {
+                    console.log("User creation failed");
+                    res.status(400);
+                }
+            });
+            res.status(200).json(jsonObj);
+        });
+        // GET a username
+        router.get('/users/:userName', (req, res) => {
+            let userName = req.params.userName;
+            console.log('Query user with name: ' + userName);
+            this.User.retrieveOneUser(res, { userId: userName });
+        });
+        // GET all users
+        router.get('/users', (req, res) => {
+            console.log('Query for all users');
+            this.User.retrieveAllUsers(res);
         });
         this.expressApp.use('/', router);
     }
