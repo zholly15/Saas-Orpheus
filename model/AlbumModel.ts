@@ -18,9 +18,11 @@ class AlbumModel {
         this.schema = new Mongoose.Schema(
             {
                 name: String,
-                artist: String,
+                spotifyID: String,
                 _id: String,
-                spotifyId: String
+                total_tracks: Number,
+                release_date: String,
+                artist_name: String,
             }, {collection: 'albums'}
         );
     }

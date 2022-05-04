@@ -22,7 +22,7 @@ class UserModel {
                 username: String,
                 password: String,
                 fName: String,
-                lName: String
+                lName: String,
             }, {collection: 'users'}
         );
     }
