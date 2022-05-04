@@ -147,7 +147,7 @@ class App {
     router.get('/users/:userName', (req, res) => {
       let userName = req.params.userName;
       console.log('Query user with name: ' + userName);
-      this.User.retrieveOneUser(res, {userId: userName});
+      this.User.retrieveOneUser(res, {username: userName});
     });
 
     // GET all users
