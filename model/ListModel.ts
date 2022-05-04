@@ -33,17 +33,36 @@ class ListModel {
     public retrieveAllLists(response:any): any {
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
+            response.json(itemArray);
+        });
+    }
+
+    public retrieveOneList(response:any, list:Object): any {
+        let query = this.model.findOne(list);
+        query.exec((err, itemArray) => {
+            response.json(itemArray);
+        });
+    }
+
+    public retrieveAllAlbumsFromList(response:any, list:Object): any { 
+        let query = this.model.findOne(list, 'albumIds');
+        query.exec((err, item) => {
+            response.json(item);
         });
     }
 
     public retrieveListCount(response:any): any {
         console.log("retrieve List Count ...");
-        var query = this.model.estimatedDocumentCount();
+        let query = this.model.estimatedDocumentCount();
         query.exec( (err, numberOfLists) => {
             console.log("numberOfLists: " + numberOfLists);
             response.json(numberOfLists) ;
         });
+    }
+
+    public updateList(response:any, album:Object): any {
+        console.log("Adding an album to the list");
+        let query = this.model.updateOne({name: album}, {})
     }
 
 }

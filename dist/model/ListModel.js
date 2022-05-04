@@ -28,13 +28,29 @@ class ListModel {
             response.json(itemArray);
         });
     }
+    retrieveOneList(response, list) {
+        let query = this.model.findOne(list);
+        query.exec((err, itemArray) => {
+            response.json(itemArray);
+        });
+    }
+    retrieveAllAlbumsFromList(response, list) {
+        let query = this.model.findOne(list, 'albumIds');
+        query.exec((err, item) => {
+            response.json(item);
+        });
+    }
     retrieveListCount(response) {
         console.log("retrieve List Count ...");
-        var query = this.model.estimatedDocumentCount();
+        let query = this.model.estimatedDocumentCount();
         query.exec((err, numberOfLists) => {
             console.log("numberOfLists: " + numberOfLists);
             response.json(numberOfLists);
         });
+    }
+    updateList(response, album) {
+        console.log("Adding an album to the list");
+        let query = this.model.updateOne({ name: album }, {});
     }
 }
 exports.ListModel = ListModel;

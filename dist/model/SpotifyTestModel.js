@@ -14,19 +14,26 @@ class SpotifyModel {
         this.schema = new Mongoose.Schema({
             name: String,
             artist: String,
-            _id: String
+            _id: String,
+            spotifyId: String
         }, { collection: 'albums' });
     }
     createModel() {
         this.model = mongooseConnection.model("albums", this.schema);
     }
-    retrieveAllLists(response) {
-        var query = this.model.find({});
+    retrieveAllAlbums(response) {
+        let query = this.model.find({});
         query.exec((err, itemArray) => {
             response.json(itemArray);
         });
     }
-    retrieveListCount(response) {
+    retrieveOneAlbum(response, album) {
+        let query = this.model.findOne(album);
+        query.exec((err, item) => {
+            response.json(item);
+        });
+    }
+    retrieveAlbumCount(response) {
         console.log("retrieve List Count ...");
         var query = this.model.estimatedDocumentCount();
         query.exec((err, numberOfLists) => {
