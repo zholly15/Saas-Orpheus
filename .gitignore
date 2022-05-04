@@ -1,1 +1,3 @@
 db/
+dist/
+DataAccess.ts
