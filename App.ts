@@ -58,18 +58,18 @@ class App {
     let router = express.Router();
 
     // Get all albums in the database 
-    router.get('/spotify', (req, res) => {
+    router.get('/albums', (req, res) => {
       this.Albums.retrieveAllAlbums(res);
     });
 
     // Get all albums in a list
-    router.get('/lists/:listName/spotify', (req, res) => {
+    router.get('/lists/:listName/albums', (req, res) => {
       const name = req.params.listName;
       this.List.retrieveAllAlbumsFromList(res, {name: name});
     });
 
     // Get an album 
-    router.get('/spotify/:albumName', (req, res) => {
+    router.get('/album/search/:albumName', (req, res) => {
       const name = req.params.albumName;
       console.log('Query single album with name: ' + name);
       this.Albums.retrieveOneAlbum(res, {name: name});
@@ -77,9 +77,9 @@ class App {
 
     // add an album to both albums collection and list collection
     // NEEDS TO BE MODIFIED  
-    router.post('/spotify/add/:listName', (req, res) =>{
+    router.post('/album/add/:albumName', (req, res) =>{
       const id = crypto.randomBytes(16).toString("hex");
-      const name = req.params.listName;
+      const name = req.params.albumName;
       console.log("Adding an album to list: " + name); 
       console.log(req.body);
       let jsonObj = req.body;
@@ -105,7 +105,7 @@ class App {
     })
 
     // GET to get one list using the name of the list 
-    router.get('/lists/:listName', (req, res) => {
+    router.get('/lists/search/:listName', (req, res) => {
       let name = req.params.listName;
       console.log('Query single list with name: ' + name);
       this.List.retrieveOneList(res, {name: name});
@@ -144,7 +144,7 @@ class App {
     })
     
     // GET a username
-    router.get('/users/:userName', (req, res) => {
+    router.get('/users/search/:userName', (req, res) => {
       let userName = req.params.userName;
       console.log('Query user with name: ' + userName);
       this.User.retrieveOneUser(res, {username: userName});
@@ -154,6 +154,10 @@ class App {
     router.get('/users', (req, res) => {
       console.log('Query for all users');
       this.User.retrieveAllUsers(res);
+    })
+
+    router.get('/', (req,res)=>{
+      res.send("Welcome to the Orpheus API");
     })
 
     this.expressApp.use('/', router);
