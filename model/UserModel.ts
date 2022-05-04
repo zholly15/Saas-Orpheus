@@ -18,7 +18,6 @@ class UserModel {
         this.schema = new Mongoose.Schema(
             {
                 email: String,
-                userId: String,
                 username: String,
                 password: String,
                 fName: String,
