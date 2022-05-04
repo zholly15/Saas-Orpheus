@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 const express_1 = __importDefault(require("express"));
 const bodyParser = __importStar(require("body-parser"));
-const SpotifyTestModel_1 = require("./model/SpotifyTestModel");
+const AlbumModel_1 = require("./model/AlbumModel");
 const crypto = __importStar(require("crypto"));
 const ListModel_1 = require("./model/ListModel");
 const UserModel_1 = require("./model/UserModel");
@@ -62,7 +62,7 @@ class App {
         this.expressApp = (0, express_1.default)();
         this.middleware();
         this.routes();
-        this.Albums = new SpotifyTestModel_1.SpotifyModel();
+        this.Albums = new AlbumModel_1.AlbumModel();
         this.List = new ListModel_1.ListModel();
         this.User = new UserModel_1.UserModel();
     }

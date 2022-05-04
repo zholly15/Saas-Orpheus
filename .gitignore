@@ -1,3 +1,6 @@
 db/
-dist/
+/dist/
 DataAccess.ts
+dist/App.js
+dist/**
+dist/App.js.map

@@ -1,6 +1,6 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
-import {SpotifyModel} from './model/SpotifyTestModel';
+import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
 import { ListModel } from './model/ListModel';
 import { UserModel } from './model/UserModel';
@@ -10,7 +10,7 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public Albums:SpotifyModel;
+  public Albums:AlbumModel;
   public List:ListModel;
   public User:UserModel;
 
@@ -42,7 +42,7 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.Albums = new SpotifyModel();
+    this.Albums = new AlbumModel();
     this.List = new ListModel();
     this.User = new UserModel();
   }
