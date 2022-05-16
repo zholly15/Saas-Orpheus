@@ -44,6 +44,12 @@ class UserModel {
         });
     }
 
+    public deleteOneUser(response:any, name:Object) : any {
+        this.model.findOne(name).remove().exec((err, name) => {
+            response.json(name);
+        });
+    }
+
 
 }
 export {UserModel};
