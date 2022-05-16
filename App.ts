@@ -76,7 +76,7 @@ class App {
     });
 
     // add an album to both albums collection and list collection
-    // NEEDS TO BE MODIFIED  
+    // TODO: Make albumID or name past through body to then be queried to spotify
     router.post('/album/add/:albumName', (req, res) =>{
       const id = crypto.randomBytes(16).toString("hex");
       const name = req.params.albumName;
