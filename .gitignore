@@ -2,3 +2,4 @@ db/
 /dist/
 DataAccess.ts
 node_modules/
+*.zip
