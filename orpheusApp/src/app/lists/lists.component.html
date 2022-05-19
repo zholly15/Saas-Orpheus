@@ -1,7 +1,10 @@
 <h2>CollectionId : {{listInfo.collectionId}}</h2>
-<h2>OwnerId : {{listInfo.ownerId}}</h2>
+<div><span>OwnerId : {{listInfo.ownerId}}</span></div>
 <h2>AlbumIds : {{listInfo.albumIds}}</h2>
 <h2>ListName : {{listInfo.name}}</h2>
 <h2>ListDesc : {{listInfo.description}}</h2>
+
+<label for ="ListName">List Name: </label>
+<input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
 
 
