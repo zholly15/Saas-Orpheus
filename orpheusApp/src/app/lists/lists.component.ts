@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {List} from '../list'
+import { LISTS } from '../mock-list';
 
 @Component({
   selector: 'app-lists',
@@ -8,18 +9,15 @@ import {List} from '../list'
 })
 export class ListsComponent implements OnInit {
 
-  listInfo: List = {
-    collectionId: "1",
-    ownerId: "Albert",
-    albumIds: ['1231', '53224', '12351'],
-    name: "Rock",
-    description: "My favorite rock artists!"
+  lists = LISTS;
+
+  selectedList?: List;
+  onSelect(list : List): void {
+    this.selectedList = list;
   }
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-
 }

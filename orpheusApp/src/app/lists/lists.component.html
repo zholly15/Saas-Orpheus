@@ -1,3 +1,4 @@
+<!--  
 <h2>CollectionId : {{listInfo.collectionId}}</h2>
 <div><span>OwnerId : {{listInfo.ownerId}}</span></div>
 <h2>AlbumIds : {{listInfo.albumIds}}</h2>
@@ -6,5 +7,29 @@
 
 <label for ="ListName">List Name: </label>
 <input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
+-->
+
+<h2>My Lists</h2>
+<ul class="lists">
+  <li *ngFor="let list of lists">
+    <button type="button" (click) = "onSelect(list)">
+      <span class="badge">{{list.collectionId}}</span>
+      <span class="name"> {{list.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedList">
+    <h2>{{selectedList.name}} Details</h2>
+    <div>id: {{selectedList.collectionId}}</div>
+    <div>
+      <label for="list-name">List name: </label>
+      <input id="list-name" [(ngModel)]="selectedList.name" placeholder="name">
+    </div>
+    <div>  AlbumIds :</div>
+    <div *ngFor="let item of selectedList.albumIds">
+       {{item}}
+    </div>
+</div>
 
 
