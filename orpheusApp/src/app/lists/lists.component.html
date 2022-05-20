@@ -19,17 +19,6 @@
   </li>
 </ul>
 
-<div *ngIf="selectedList">
-    <h2>{{selectedList.name}} Details</h2>
-    <div>id: {{selectedList.collectionId}}</div>
-    <div>
-      <label for="list-name">List name: </label>
-      <input id="list-name" [(ngModel)]="selectedList.name" placeholder="name">
-    </div>
-    <div>  AlbumIds :</div>
-    <div *ngFor="let item of selectedList.albumIds">
-       {{item}}
-    </div>
-</div>
+<app-list-detail [list] = "selectedList"></app-list-detail>
 
 

@@ -1,2 +1,57 @@
-<h1>{{title}}</h1>
-<app-lists></app-lists>
+
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button  class="menu-toggle-button" *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+        <mat-icon *ngIf="sidenav.opened">menu</mat-icon>
+    </button>
+    <span>{{title}}</span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">  
+        <img class="avatar mat-elevation-z8" src="https://free-images.com/tn/818a/cat_cute_cat_cat_3.jpg" />
+
+        <h4 class="name">Pooty</h4>
+        <p class="designation">House cat</p>
+
+        <mat-divider></mat-divider>
+        
+        <a class="route-styling" routerLink="/collections">
+            <button mat-button class="menu-button">
+                <mat-icon>library_music</mat-icon>
+                <span>Collections</span>
+            </button>
+        </a>
+        <a class="route-styling" routerLink="/search">
+            <button mat-button class="menu-button">
+                <mat-icon>explore</mat-icon>
+                <span>Explore</span>
+            </button>
+        </a>
+        <a class="route-styling" routerLink="/user">
+            <button mat-button class="menu-button">
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+            </button>
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <a class="route-styling" routerLink="/help">
+            <button mat-button class="menu-button">
+                <mat-icon>help</mat-icon>
+                <span>Help</span>
+            </button>
+        </a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
