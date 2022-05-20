@@ -9,7 +9,7 @@
 <input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
 -->
 
-<h1>My Lists</h1>
+<h1>My Collections</h1>
 <ul class="lists">
   <li *ngFor="let list of lists">
     <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)">

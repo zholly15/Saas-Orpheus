@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MessagesComponent } from './messages/messages.component';
     ListsComponent,
     UsersComponent,
     ListDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
