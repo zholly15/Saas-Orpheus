@@ -19,7 +19,6 @@ import { SearchComponent } from './search/search.component';
 import { HelpComponent } from './help/help.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +28,7 @@ import { HelpComponent } from './help/help.component';
     MessagesComponent,
     SearchComponent,
     HelpComponent
+
   ],
   imports: [
     BrowserModule,

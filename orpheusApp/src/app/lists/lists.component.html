@@ -9,10 +9,10 @@
 <input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
 -->
 
-<h2>My Lists</h2>
+<h1>My Collections</h1>
 <ul class="lists">
   <li *ngFor="let list of lists">
-    <button type="button" (click) = "onSelect(list)">
+    <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)">
       <span class="badge">{{list.collectionId}}</span>
       <span class="name"> {{list.name}}</span>
     </button>
@@ -20,5 +20,8 @@
 </ul>
 
 <app-list-detail [list] = "selectedList"></app-list-detail>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ea64e5c5605db67e1b419453551d8cc4bf84ac66
