@@ -1,0 +1,15 @@
+<div *ngIf="list">
+    <h2>{{list.name}} Details</h2>
+    <div>id: {{list.collectionId}}</div>
+    <div>
+      <label for="list-name">List name: </label>
+      <input id="list-name" [(ngModel)]="list.name" placeholder="name">
+    </div>
+    <div>  AlbumIds :</div>
+    <div *ngFor="let item of list.albumIds">
+       {{item}}
+    </div>
+</div>
+
+
+
