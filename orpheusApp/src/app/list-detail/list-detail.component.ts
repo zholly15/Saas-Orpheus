@@ -10,6 +10,12 @@ export class ListDetailComponent implements OnInit {
 
   @Input() list?: List;
 
+
+  addAlbumId() : void {
+    const input = document.getElementById('add-album') as HTMLInputElement;
+    this.list?.albumIds.push(input.value);
+  }
+
   constructor() { }
 
   ngOnInit(): void {

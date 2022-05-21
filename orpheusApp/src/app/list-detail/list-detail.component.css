@@ -1,0 +1,7 @@
+.butt {
+    border: 1px outset blue;
+    background-color: lightBlue;
+    height:50px;
+    width:50px;
+    cursor:pointer;
+}
