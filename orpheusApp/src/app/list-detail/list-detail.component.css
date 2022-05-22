@@ -1,7 +1,20 @@
 .butt {
     border: 1px outset blue;
     background-color: lightBlue;
-    height:50px;
-    width:50px;
+    height:13px;
+    width:13px;
     cursor:pointer;
+    display: inline;
+    position: relative;
 }
+
+.font-properties {
+    font-family: serif;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    color:black;
+    border: 2px solid black;
+    border-radius: 5%;
+    margin:auto
+  }
+  
