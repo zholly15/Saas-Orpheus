@@ -1,0 +1,6 @@
+Saas-Orpheus/db/
+Saas-Orpheus/dist/
+Saas-Orpheus/DataAccess.ts
+Saas-Orpheus/node_modules/
+Saas-Orpheus/*.zip
+orpheusApp/node_modules/
