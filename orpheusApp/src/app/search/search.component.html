@@ -8,10 +8,10 @@
             </button>
         </form>
     </div>
-    <div *ngIf="newAlbum.name && newAlbum._id" class="search-success">
+    <div *ngIf="newAlbum.name != ''" class="search-success">
         <mat-grid-list cols="1" rows="1">
             <mat-grid-tile class="avatar mat-elevation-z8">
-                <div class="tile">
+                <div class="tile-single">
                     <button mat-icon-button class="add-album" (click)="openMenu(newAlbum)">
                         <mat-icon class="add-icon">library_add</mat-icon>
                     </button>

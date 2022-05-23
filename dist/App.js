@@ -91,6 +91,12 @@ class App {
             console.log('Query single album with spotifyID: ' + spotifyID);
             this.Albums.retrieveOneAlbum(res, { spotifyID: spotifyID });
         });
+        // Get an album 
+        router.get('/albums/search/name/:albumName', (req, res) => {
+            const name = req.params.albumName;
+            console.log('Query single album with Album name: ' + name);
+            this.Albums.retrieveOneAlbum(res, { name: name });
+        });
         // add an album to both albums collection and list collection
         // TODO: Make albumID or name past through body to then be queried to spotify
         router.post('/album/add/:listName', (req, res) => {

@@ -1,10 +1,12 @@
 .input-form {
     width: 35%;
+    border-radius: 15px;
 }
 .search-form {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
 }
 
 .search-body {
@@ -67,7 +69,7 @@
  .tile {
       display: flex;
       flex-direction: column;
-      margin: 10%;
+      margin: 15%;
   }
 
   .tile-image {
@@ -87,5 +89,16 @@
   }
 
   .add-icon{
-      font-size: 5rem;
+      font-size: 4rem;
   }
+
+  .tile-single {
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+  
+

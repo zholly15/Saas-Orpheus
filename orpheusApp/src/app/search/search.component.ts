@@ -22,7 +22,9 @@ export class SearchComponent implements OnInit {
     _id: "",
     name: "",
     artist_name: "",
-    spotifyId: ""
+    spotifyID: "",
+    release_date: "",
+    total_tracks: 0
   }
   constructor(
     private searchService: SearchService,

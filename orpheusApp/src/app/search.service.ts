@@ -30,7 +30,7 @@ export class SearchService {
     let queryParams = new HttpParams(); 
     queryParams = queryParams.append("name",name);
     
-    return this.httpClient.get<Album>(this.endPoint + '/album/search/' + name, {params: queryParams})
+    return this.httpClient.get<Album>(this.endPoint + '/albums/search/name/' + name, {params: queryParams})
       .pipe(
         retry(1),
         catchError(this.handleError<Album>('getAlbum'))
