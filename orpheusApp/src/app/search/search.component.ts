@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   newAlbum: Album = {
     _id: "",
     name: "",
-    artist: "",
+    artist_name: "",
     spotifyId: ""
   }
   constructor(

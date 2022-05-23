@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './user.service';
+import { SearchService } from './search.service';
 import {MatGridListModule} from '@angular/material/grid-list'
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -66,7 +67,7 @@ import { HttpErrorHandler } from './http-error-handler.service';
     MatFormFieldModule,
     HttpClientModule
   ],
-  providers: [UserService, HttpErrorHandler],
+  providers: [SearchService, UserService, HttpErrorHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
