@@ -1,6 +1,6 @@
 export interface Album {
     _id: String;
     name: String;
-    artist: String;
+    artist_name: String;
     spotifyId: String;
 }
