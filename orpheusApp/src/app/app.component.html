@@ -29,22 +29,15 @@
         </a>
         <a class="route-styling" routerLink="/user">
             <button mat-button class="menu-button">
-                <mat-icon>settings</mat-icon>
-                <span>Settings</span>
+                <mat-icon>perm_identity</mat-icon>
+                <span>User</span>
             </button>
         </a>
 
         <mat-divider></mat-divider>
-
-        <a class="route-styling" routerLink="/help">
-            <button mat-button class="menu-button">
-                <mat-icon>help</mat-icon>
-                <span>Help</span>
-            </button>
-        </a>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div class="content mat-elevation-z8">
+        <div>
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

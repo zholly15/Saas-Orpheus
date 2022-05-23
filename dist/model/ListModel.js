@@ -52,6 +52,14 @@ class ListModel {
         console.log("Adding an album to the list");
         let query = this.model.updateOne({ name: album }, {});
     }
+    deleteOneList(response, name) {
+        this.model.findOne(name).remove().exec((err, name) => {
+            if (err)
+                response.status(400);
+            else
+                response.status(200).json(name);
+        });
+    }
 }
 exports.ListModel = ListModel;
 //# sourceMappingURL=ListModel.js.map

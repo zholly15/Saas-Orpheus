@@ -33,6 +33,7 @@ const AlbumModel_1 = require("./model/AlbumModel");
 const crypto = __importStar(require("crypto"));
 const ListModel_1 = require("./model/ListModel");
 const UserModel_1 = require("./model/UserModel");
+let cors = require('cors');
 // Creates and configures an ExpressJS web server.
 class App {
     // Spotify stuff
@@ -68,6 +69,7 @@ class App {
     }
     // Configure Express middleware.
     middleware() {
+        this.expressApp.use(cors());
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     }
@@ -90,10 +92,10 @@ class App {
             this.Albums.retrieveOneAlbum(res, { name: name });
         });
         // add an album to both albums collection and list collection
-        // NEEDS TO BE MODIFIED  
-        router.post('/album/add/:albumName', (req, res) => {
+        // TODO: Make albumID or name past through body to then be queried to spotify
+        router.post('/album/add/:listName', (req, res) => {
             const id = crypto.randomBytes(16).toString("hex");
-            const name = req.params.albumName;
+            const name = req.params.listName;
             console.log("Adding an album to list: " + name);
             console.log(req.body);
             let jsonObj = req.body;

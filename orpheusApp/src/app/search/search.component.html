@@ -1,1 +1,46 @@
-<p>search works!</p>
+<div class="explore-body">
+    <h1 class="title">Explore <mat-icon class="title-icon">explore</mat-icon></h1>
+    <div class="search-body">
+        <form class="search-form">
+            <input type="text" id="album" name="a" #a matInput placeholder="Search" class="input-form">
+            <button class='search-button' mat-icon-button (click)="searchForAlbum(a.value)"> 
+                <mat-icon>search</mat-icon>
+            </button>
+        </form>
+    </div>
+    <div *ngIf="newAlbum.name && newAlbum._id" class="search-success">
+        <mat-grid-list cols="1" rows="1">
+            <mat-grid-tile class="avatar mat-elevation-z8">
+                <div class="tile">
+                    <button mat-icon-button class="add-album" (click)="openMenu(newAlbum)">
+                        <mat-icon class="add-icon">library_add</mat-icon>
+                    </button>
+                    <div class="tile-image">
+                        <img class="avatar mat-elevation-z8" src="https://free-images.com/tn/818a/cat_cute_cat_cat_3.jpg" height="400vw" width="400vh"/>
+                    </div>
+                    <span class="tile-info">Album: {{newAlbum.name}}</span>
+                    <span class="tile-info">Artist: {{newAlbum.artist}}</span>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </div>
+    <h2 class="secondary-title">
+    Recommended Albums
+    </h2>
+    <div class="explore-content">
+        <mat-grid-list cols="4" class="grid-layout-custom">
+        <mat-grid-tile *ngFor="let album of albums" class="avatar mat-elevation-z8">
+        <div class="tile">
+            <button mat-icon-button class="add-album" (click)="openMenu(newAlbum)">
+                <mat-icon class="add-icon">library_add</mat-icon>
+            </button>
+            <div class="tile-image">
+                <img class="avatar mat-elevation-z8" src="https://free-images.com/tn/818a/cat_cute_cat_cat_3.jpg" width="200vw" height="200vh"/>
+            </div>
+            <span class="tile-info">Album: {{album.name}}</span>
+            <span class="tile-info">Artist: {{album.artist}}</span>
+        </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+</div>

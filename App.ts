@@ -4,6 +4,7 @@ import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
 import { ListModel } from './model/ListModel';
 import { UserModel } from './model/UserModel';
+let  cors = require('cors');
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -49,6 +50,7 @@ class App {
 
   // Configure Express middleware.
   private middleware(): void {
+    this.expressApp.use(cors());
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
   }
@@ -77,9 +79,9 @@ class App {
 
     // add an album to both albums collection and list collection
     // TODO: Make albumID or name past through body to then be queried to spotify
-    router.post('/album/add/:albumName', (req, res) =>{
+    router.post('/album/add/:listName', (req, res) =>{
       const id = crypto.randomBytes(16).toString("hex");
-      const name = req.params.albumName;
+      const name = req.params.listName;
       console.log("Adding an album to list: " + name); 
       console.log(req.body);
       let jsonObj = req.body;

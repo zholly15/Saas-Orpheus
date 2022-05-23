@@ -1,0 +1,91 @@
+.input-form {
+    width: 35%;
+}
+.search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.search-body {
+    justify-content: center;
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    height: 15%;
+    width: 100%;
+}
+
+.search-success {
+    width: 45%;
+    height: 10%;
+    background-color: lightgray;
+    margin-left: 25vw;
+}
+
+.explore-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.explore-content {
+    margin: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.search-button {
+    background-color: white;
+}
+
+.title {
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+.title-icon{
+    font-size: 3rem;
+    margin-left: 1%;
+}
+
+.secondary-title{
+    color: black;
+    font-size: 2rem;
+}
+
+.grid-layout-custom{
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    color: black;
+    font-size: larger;
+    font-weight: bolder;
+  }
+
+ .tile {
+      display: flex;
+      flex-direction: column;
+      margin: 10%;
+  }
+
+  .tile-image {
+      height: 60%;
+      width: 80%;
+      justify-content: center;
+  }
+
+  .tile-info {
+      margin: 1%;
+  }
+
+  .add-album {
+      margin-bottom: 10%;
+      margin-left: 90%;
+      background-color: lightgray;
+  }
+
+  .add-icon{
+      font-size: 5rem;
+  }

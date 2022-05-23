@@ -7,9 +7,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatGridListModule } from '@angular/material/grid-list';  
+import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ListsComponent } from './lists/lists.component';
@@ -18,8 +18,9 @@ import { UsersComponent } from './users/users.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SearchComponent } from './search/search.component';
-import { HelpComponent } from './help/help.component';
-
+import { DialogComponent } from './dialog/dialog.component';
+import { httpInterceptorProviders } from './interceptors';
+import { HttpErrorHandler } from './http-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,9 @@ import { HelpComponent } from './help/help.component';
     ListDetailComponent,
     MessagesComponent,
     SearchComponent,
-    HelpComponent,
-
-
+    DialogComponent
   ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,23 +43,17 @@ import { HelpComponent } from './help/help.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatInputModule,
-    MatFormFieldModule
+    MatGridListModule,
+    MatDialogModule,
+    HttpClientModule
   ],
   exports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatInputModule,
-    MatFormFieldModule
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    //httpInterceptorProviders,
+    HttpErrorHandler
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

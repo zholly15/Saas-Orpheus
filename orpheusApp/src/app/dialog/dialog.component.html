@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Add To List</h1>
+<mat-dialog-content>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close *ngFor="let list of lists" mat-dialog-close={{list.name}}>{{list.name}}</button>
+</mat-dialog-actions>

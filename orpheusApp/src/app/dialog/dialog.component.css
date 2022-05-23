@@ -1,0 +1,27 @@
+.dialog-actions {
+    display: flex;
+    flex-direction: column;
+    border: blue;
+    border-width: thick;
+    border-radius: 10px;
+    font-size: 10rem;
+    font-weight: bolder;
+}
+
+.dialog-title {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+
+::ng-deep .mat-dialog-title {
+    font-size: 2rem !important;
+    font-weight: bolder !important;
+    color: black !important;
+}
+
+::ng-deep .mat-dialog-actions {
+    font-size: 20rem !important;
+    font-weight: bolder !important;
+    color: black !important;
+}
