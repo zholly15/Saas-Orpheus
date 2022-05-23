@@ -9,8 +9,16 @@ import { User } from 'src/userModel';
 export class UserService {
 
   constructor(private httpclient: HttpClient) { }
+  endPoint = 'http://localhost:8080/';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+
 
   getUsers(): Observable<User[]> {
-    return this.httpclient.get<User[]>("localhost:8080/users");
+    return this.httpclient.get<User[]>(this.endPoint + "users", this.httpOptions);
   }
 }
