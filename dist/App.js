@@ -86,10 +86,10 @@ class App {
             this.List.retrieveAllAlbumsFromList(res, { name: name });
         });
         // Get an album 
-        router.get('/album/search/:albumName', (req, res) => {
-            const name = req.params.albumName;
-            console.log('Query single album with name: ' + name);
-            this.Albums.retrieveOneAlbum(res, { name: name });
+        router.get('/albums/search/:albumID', (req, res) => {
+            const spotifyID = req.params.albumID;
+            console.log('Query single album with spotifyID: ' + spotifyID);
+            this.Albums.retrieveOneAlbum(res, { spotifyID: spotifyID });
         });
         // add an album to both albums collection and list collection
         // TODO: Make albumID or name past through body to then be queried to spotify
@@ -119,10 +119,10 @@ class App {
             this.List.retrieveAllLists(res);
         });
         // GET to get one list using the name of the list 
-        router.get('/lists/search/:listName', (req, res) => {
-            let name = req.params.listName;
-            console.log('Query single list with name: ' + name);
-            this.List.retrieveOneList(res, { name: name });
+        router.get('/lists/search/:collectionID', (req, res) => {
+            let collectionID = req.params.collectionID;
+            console.log('Query single list with ID: ' + collectionID);
+            this.List.retrieveOneList(res, { collectionId: collectionID });
         });
         // POST to create a list 
         router.post('/lists/create', (req, res) => {
@@ -155,10 +155,10 @@ class App {
             res.status(200).json(jsonObj);
         });
         // GET a username
-        router.get('/users/search/:userName', (req, res) => {
-            let userName = req.params.userName;
-            console.log('Query user with name: ' + userName);
-            this.User.retrieveOneUser(res, { username: userName });
+        router.get('/users/search/:userId', (req, res) => {
+            let userId = req.params.userId;
+            console.log('Query user with Id: ' + userId);
+            this.User.retrieveOneUser(res, { userId: userId });
         });
         // GET all users
         router.get('/users', (req, res) => {

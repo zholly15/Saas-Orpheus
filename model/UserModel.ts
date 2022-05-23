@@ -1,4 +1,5 @@
 import Mongoose = require("mongoose");
+import { stringify } from "querystring";
 import {DataAccess} from '../DataAccess';
 import {IUserModel} from '../interfaces/IUserModel';
 
@@ -18,6 +19,7 @@ class UserModel {
         this.schema = new Mongoose.Schema(
             {
                 email: String,
+                userId: String,
                 username: String,
                 password: String,
                 fName: String,
