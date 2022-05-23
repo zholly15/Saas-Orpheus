@@ -3,17 +3,25 @@ import { List } from './list';
 import { LISTS } from './mock-list';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
 
-  constructor(private messageService : MessageService) { }
+  constructor(private httpClient : HttpClient) { }
+
+  endPoint = 'http://localhost:8080/';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   getLists(): Observable<List[]> {
-    const lists = of(LISTS);
-    this.messageService.add('ListService: fetched lists');
-    return lists;
+    return this.httpClient.get<List[]>(this.endPoint + "lists", this.httpOptions);
   }
+
 }
