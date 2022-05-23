@@ -7,9 +7,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatGridListModule } from '@angular/material/grid-list';  
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './user.service';
+import {MatGridListModule} from '@angular/material/grid-list'
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { ListsComponent } from './lists/lists.component';
@@ -43,17 +46,27 @@ import { HttpErrorHandler } from './http-error-handler.service';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    HttpClientModule,
     MatGridListModule,
-    MatDialogModule,
-    HttpClientModule
+    MatDialogModule
   ],
   exports: [
-    MatIconModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    HttpClientModule
   ],
-  providers: [
-    //httpInterceptorProviders,
-    HttpErrorHandler
-  ],
+  providers: [UserService, HttpErrorHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

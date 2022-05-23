@@ -1,0 +1,16 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from 'src/userModel';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  constructor(private httpclient: HttpClient) { }
+
+  getUsers(): Observable<User[]> {
+    return this.httpclient.get<User[]>("localhost:8080/users");
+  }
+}
