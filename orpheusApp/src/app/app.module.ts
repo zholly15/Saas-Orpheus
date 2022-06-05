@@ -10,10 +10,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './user.service';
-import { SearchService } from './search.service';
-import { ListService } from './list.service';
-import {MatGridListModule} from '@angular/material/grid-list'
+import { UserService } from './services/user.service';
+import { SearchService } from './services/search.service';
+import { ListService } from './services/list.service';
+import { MatGridListModule } from '@angular/material/grid-list'
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { SearchComponent } from './search/search.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { httpInterceptorProviders } from './interceptors';
-import { HttpErrorHandler } from './http-error-handler.service';
+import { HttpErrorHandler } from './services/http-error-handler.service';
 
 @NgModule({
   declarations: [

@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
-import { Album } from './album';
-import { List } from './list';
+import { Album } from '../models/album';
+import { List } from '../models/list';
 
 @Injectable({
   providedIn: 'root'

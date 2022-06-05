@@ -1,4 +1,4 @@
-import { List } from "./list";
+import { List } from "../models/list";
 
 export const LISTS: List[] = [
 

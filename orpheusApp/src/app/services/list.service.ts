@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { List } from './list';
-import { LISTS } from './mock-list';
+import { List } from '../models/list';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

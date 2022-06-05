@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { ActivatedRoute } from '@angular/router';
-import { SearchService } from '../search.service';
-import { Album } from '../album';
+import { SearchService } from '../services/search.service';
+import { Album } from '../models/album';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from '../dialog/dialog.component';
 

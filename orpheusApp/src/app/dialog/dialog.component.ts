@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../search.service';
-import { List } from '../list';
+import { SearchService } from '../services/search.service';
+import { List } from '../models/list';
 
 @Component({
   selector: 'app-dialog',

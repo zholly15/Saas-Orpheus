@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from '../list'
-import { ListService } from '../list.service';
-import { MessageService } from '../message.service';
+import { List } from '../models/list';
+import { ListService } from '../services/list.service';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-lists',
