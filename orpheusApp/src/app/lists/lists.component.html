@@ -13,11 +13,22 @@
 <ul class="lists">
   <li *ngFor="let list of lists">
     <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)">
-      <span class="badge">{{list.collectionId}}</span>
+      <span class="badge"></span>
       <span class="name"> {{list.name}}</span>
     </button>
+    <button (click) = "removeList(list.collectionId)">X</button>
   </li>
 </ul>
 
 <app-list-detail [list] = "selectedList"></app-list-detail>
+
+<br><br>
+<div>
+  <label for="listname">List Name: </label>
+  <input type="text" id="listname" name="listname" [(ngModel)] = "listname"><br><br>
+  <label for="listdesc">List Desc: </label>
+  <input type="text" id="listdesc" name="listdesc" [(ngModel)] = "listdesc"><br><br>
+  <button (click)="addList()">Add</button>
+</div>
 </html>
+
