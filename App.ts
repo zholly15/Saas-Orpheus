@@ -172,8 +172,6 @@ class App {
     this.expressApp.use('/', router);
   }
 
-
-
 }
 
 export {App};
