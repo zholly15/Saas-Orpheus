@@ -5,13 +5,13 @@
       <label for="list-name">List name: </label>
       <input id="list-name" [(ngModel)]="list.name" placeholder="name">
     </div>
-    <div>AlbumIds :</div>
+    <div>Albums :</div>
     <div *ngFor="let item of list.albumIds">
        {{item}}
     </div>
     
     <label for="add-album"> Album Id: </label>
     <input type = "text" id = "add-album">
-    <button class="butt" (click)="addAlbumId()">+</button>
+    <button class="delete-button" (click)="addAlbumId()">+</button>
 
 </div>
