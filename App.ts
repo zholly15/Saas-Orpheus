@@ -4,7 +4,7 @@ import * as logger from 'morgan';
 import * as mongodb from 'mongodb';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
-import * as session from 'express-session';
+import session from 'express-session';
 import * as cookieParser from 'cookie-parser';
 import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
@@ -13,7 +13,7 @@ import { UserModel } from './model/UserModel';
 let  cors = require('cors');
 
 import GooglePassportObj from './GooglePassport';
-import * as passport from 'passport';
+import passport from 'passport';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -46,7 +46,8 @@ class App {
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     this.expressApp.use(session({ secret: 'keyboard cat' }));
-    this.expressApp.use(cookieParser());
+    //this.expressApp.use(cookieParser());
+
     this.expressApp.use(passport.initialize());
     this.expressApp.use(passport.session());
   }
