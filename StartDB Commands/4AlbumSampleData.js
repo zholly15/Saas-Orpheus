@@ -47,7 +47,7 @@ collection.insert(
 )
 collection.insert(
 {
-    name: "Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",
+    name: "Star Wars: Revenge of the Sith",
     spotifyID: "6zhlos3HFJrWni7rjqxacg",
     _id: "5",
     total_tracks: 15,
