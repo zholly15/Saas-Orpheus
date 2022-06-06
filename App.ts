@@ -15,28 +15,7 @@ class App {
   public List:ListModel;
   public User:UserModel;
 
-  // Spotify stuff
-  // ==========================================
-  /*
-  public SpotifyAPIController = (function(){
 
-    const clientId: string = '';
-    const clientSecret: string = '';
-    const getSpotifyToken = async () => {
-      const result = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-
-        },
-        body: 'grand_type=client_credentials'
-      });
-      const data = await result.json();
-      return data.access_token;
-    }
-  })();
-  */
 
   //Run configuration methods on the Express instance.
   constructor() {

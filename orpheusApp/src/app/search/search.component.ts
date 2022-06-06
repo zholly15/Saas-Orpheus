@@ -24,7 +24,8 @@ export class SearchComponent implements OnInit {
     artist_name: "",
     spotifyID: "",
     release_date: "",
-    total_tracks: 0
+    total_tracks: 0,
+    image_url: "",
   }
   constructor(
     private searchService: SearchService,

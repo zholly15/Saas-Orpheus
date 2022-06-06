@@ -5,4 +5,5 @@ export interface Album {
     total_tracks: Number;
     release_date: String;
     artist_name: String;
+    image_url: String;
 }
