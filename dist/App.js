@@ -156,6 +156,7 @@ class App {
             res.send("Welcome to the Orpheus API");
         });
         this.expressApp.use('/', router);
+        this.expressApp.use("/", express_1.default.static(__dirname + '/dist'));
     }
 }
 exports.App = App;

@@ -1,4 +1,30 @@
 {
+  "name":"SQ22SaasOrpheus",
+  "version": "0.1.0",
+  "author": "fraserkyle@seattleu.edu",
+  "description": "orpheus app",
+  "contributors":[
+  {
+    "name": "Kyle Fraser",
+    "email": "fraserkyle@seattleu.edu"
+  },
+  {
+    "name": "Zach Holly",
+    "email": "zholly18@outlook.com"
+  },
+  {
+    "name": "Albert Hunt",
+    "email": "alber.hunt0802@gmail.com"
+  }
+  ],
+
+  "main":"./AppServer.js",
+  "keywords":[
+    "azure",
+    "boilerplate",
+    "express"
+  ],
+
   "devDependencies": {
     "typescript": "^4.6.4"
   },
@@ -28,6 +54,11 @@
     "q": "^1.5.0",
     "typescript": "^4.6.3",
     "url": "^0.11.0"
+  },
+  "noAnalyze": true,
+  "license": "Apache",
+  "engines": {
+    "node": ">=0.12.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
