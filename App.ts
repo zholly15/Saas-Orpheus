@@ -5,7 +5,7 @@ import * as mongodb from 'mongodb';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
 import session from 'express-session';
-import * as cookieParser from 'cookie-parser';
+//import * as cookieParser from 'cookie-parser';
 import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
 import { ListModel } from './model/ListModel';
