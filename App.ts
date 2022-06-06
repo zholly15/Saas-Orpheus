@@ -5,7 +5,7 @@ import * as mongodb from 'mongodb';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
 import session from 'express-session';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
 import { ListModel } from './model/ListModel';
@@ -46,7 +46,7 @@ class App {
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     this.expressApp.use(session({ secret: 'keyboard cat' }));
-    //this.expressApp.use(cookieParser());
+    this.expressApp.use(cookieParser());
 
     this.expressApp.use(passport.initialize());
     this.expressApp.use(passport.session());
@@ -62,18 +62,18 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/auth/google', passport.authenticate('google', {scope: ['profile']}));
+    router.get('/auth/google', passport.authenticate('google', {scope: ['profile' ]}));
 
     router.get('/auth/google/callback', 
       passport.authenticate('google', 
-        { failureRedirect: 'http://localhost:8080' }
+        { failureRedirect: 'http://localhost:4200' }
       ),
       (req, res) => {
         console.log("successfully authenticated user and returned to callback page.");
         console.log("redirecting");
         let result = res.json();
-        let userId = result?['req']['user']['id'] : -1;
-        console.log('http://localhost:8080/app/user/' + userId)
+        let userid = result['req']['user']!['id'];
+        console.log('http://localhost:8080/app/user/' + userid)
         res.redirect('/');
       } 
     );

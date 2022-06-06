@@ -30,6 +30,7 @@ exports.App = void 0;
 const express_1 = __importDefault(require("express"));
 const bodyParser = __importStar(require("body-parser"));
 const express_session_1 = __importDefault(require("express-session"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const AlbumModel_1 = require("./model/AlbumModel");
 const crypto = __importStar(require("crypto"));
 const ListModel_1 = require("./model/ListModel");
@@ -55,7 +56,7 @@ class App {
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
         this.expressApp.use((0, express_session_1.default)({ secret: 'keyboard cat' }));
-        //this.expressApp.use(cookieParser());
+        this.expressApp.use((0, cookie_parser_1.default)());
         this.expressApp.use(passport_1.default.initialize());
         this.expressApp.use(passport_1.default.session());
     }
@@ -71,12 +72,12 @@ class App {
     routes() {
         let router = express_1.default.Router();
         router.get('/auth/google', passport_1.default.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'http://localhost:8080' }), (req, res) => {
+        router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'http://localhost:4200' }), (req, res) => {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
             let result = res.json();
-            let userId = result ? ['req']['user']['id'] : -1;
-            console.log('http://localhost:8080/app/user/' + userId);
+            let userid = result['req']['user']['id'];
+            console.log('http://localhost:8080/app/user/' + userid);
             res.redirect('/');
         });
         router.post('/app/user/', this.validateAuth, (req, res) => {
@@ -169,6 +170,9 @@ class App {
                 }
             });
             res.status(200).json(jsonObj);
+        });
+        router.delete('/lists/delete/:collectionId', (req, res) => {
+            this.List.deleteOneList(res, req.params.collectionId);
         });
         // POST to create user
         router.post('/users/createUser', this.validateAuth, (req, res) => {

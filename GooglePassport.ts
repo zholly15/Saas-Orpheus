@@ -19,15 +19,15 @@ class GooglePassport {
                 clientID: this.clientId,
                 clientSecret: this.secretId,
                 callbackURL: "http://localhost:8080/auth/google/callback",
-                passReqToCallback : true
+               // passReqToCallback : true
 //                profileFields: ['id', 'displayName', 'emails']
             },
-            (accessToken, refreshToken, profile, done) => {
+            (accessToken, refreshToken, profile: any, done) => {
                 console.log("inside new password google strategy");
                 process.nextTick( () => {
                     console.log('validating google profile:' + JSON.stringify(profile));
-                    console.log("userId:" + profile);
-                    console.log("displayName: " + profile['displayName']);
+                    console.log("userId:" + profile.id);
+                    console.log("displayName: " + profile.displayName);
                     console.log("retrieve all of the profile info needed");
                     // this.email = profile.emails[0].value;
                     profile.ac = accessToken;

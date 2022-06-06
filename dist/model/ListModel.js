@@ -52,12 +52,9 @@ class ListModel {
         console.log("Adding an album to the list");
         let query = this.model.updateOne({ name: album }, {});
     }
-    deleteOneList(response, name) {
-        this.model.findOne(name).remove().exec((err, name) => {
-            if (err)
-                response.status(400);
-            else
-                response.status(200).json(name);
+    deleteOneList(response, collection) {
+        this.model.find({ collectionId: collection }).remove().exec((err, item) => {
+            response.json(item);
         });
     }
 }
