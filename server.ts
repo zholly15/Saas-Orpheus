@@ -7,5 +7,5 @@ import * as bodyParser from 'body-parser';
 import {App} from './App';
 
 let server: any = new App().expressApp;
-server.listen(8080);
+server.listen(process.env.port || 8080);
 console.log('server running in port: 8080');
