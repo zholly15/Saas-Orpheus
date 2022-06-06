@@ -7,6 +7,7 @@ interface IAlbumModel extends Mongoose.Document {
     total_tracks: number;
     release_date: string;
     artist_name: string;
+    image_url: string;
     
 }
 export {IAlbumModel};

@@ -23,6 +23,7 @@ class AlbumModel {
                 total_tracks: Number,
                 release_date: String,
                 artist_name: String,
+                image_url: String,
             }, {collection: 'albums'}
         );
     }
