@@ -9,26 +9,28 @@
 <input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
 -->
 <html>
-<h1>My Collections</h1>
-<ul class="lists">
-  <li *ngFor="let list of lists">
-    <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)">
-      <span class="badge"></span>
-      <span class="name"> {{list.name}}</span>
-    </button>
-    <button (click) = "removeList(list.collectionId)">X</button>
-  </li>
-</ul>
+<h1 class="collection-header">My Collections</h1>
+<div class="collection-body">
+  <ul class="lists">
+    <li *ngFor="let list of lists">
+      <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)" class="album-button">
+        <span class="badge"></span>
+        <span class="name"> {{list.name}}</span>
+      </button>
+      <button class="delete-button" (click) = "removeList(list.collectionId)">X</button>
+    </li>
+  </ul>
+</div>
 
 <app-list-detail [list] = "selectedList"></app-list-detail>
 
 <br><br>
-<div>
-  <label for="listname">List Name: </label>
-  <input type="text" id="listname" name="listname" [(ngModel)] = "listname"><br><br>
-  <label for="listdesc">List Desc: </label>
-  <input type="text" id="listdesc" name="listdesc" [(ngModel)] = "listdesc"><br><br>
-  <button (click)="addList()">Add</button>
+<div class="add-form">
+  <label class="list-name-label" for="listname">List Name </label>
+  <input class="list-name-form" type="text" id="listname" name="listname" [(ngModel)] = "listname"><br><br>
+  <label class="list-description-label" for="listdesc">List Description </label>
+  <input class="list-description-form" type="text" id="listdesc" name="listdesc" [(ngModel)] = "listdesc"><br><br>
+  <button class="add-button" (click)="addList()">Add</button>
 </div>
 </html>
 

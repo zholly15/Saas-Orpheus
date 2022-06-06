@@ -36,28 +36,6 @@ const UserModel_1 = require("./model/UserModel");
 let cors = require('cors');
 // Creates and configures an ExpressJS web server.
 class App {
-    // Spotify stuff
-    // ==========================================
-    /*
-    public SpotifyAPIController = (function(){
-  
-      const clientId: string = '';
-      const clientSecret: string = '';
-      const getSpotifyToken = async () => {
-        const result = await fetch('https://accounts.spotify.com/api/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-  
-          },
-          body: 'grand_type=client_credentials'
-        });
-        const data = await result.json();
-        return data.access_token;
-      }
-    })();
-    */
     //Run configuration methods on the Express instance.
     constructor() {
         this.expressApp = (0, express_1.default)();
