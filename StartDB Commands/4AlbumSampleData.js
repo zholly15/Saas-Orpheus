@@ -36,7 +36,7 @@ collection.insert(
 )
 collection.insert(
 {
-    name: "Star Trek Into Darkness (Music From The Motion Picture)",
+    name: "Star Trek Into Darkness",
     spotifyID: "0dst3z0HnOCF0pdU05AZ4b",
     _id: "4",
     total_tracks: 14,
@@ -102,7 +102,7 @@ collection.insert(
 )
 collection.insert(
 {
-    name: "Les Misérables: In Concert at the Royal Albert Hall",
+    name: "Les Misérables",
     spotifyID: "15L0rrHDr8Q21y7e8WAo8S",
     _id: "10",
     total_tracks: 41,
