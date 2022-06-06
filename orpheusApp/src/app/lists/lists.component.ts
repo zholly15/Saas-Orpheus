@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { List } from '../models/list';
 import { ListService } from '../services/list.service';
-import { MessageService } from '../services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lists',
@@ -12,10 +12,12 @@ import { MessageService } from '../services/message.service';
 export class ListsComponent implements OnInit {
 
   lists: List[] = [];
-
+  newList ?: List;
   selectedList?: List;
+  listname: string = '';
+  listdesc: string = '';
 
-  constructor(private listService: ListService, private messageService : MessageService) { }
+  constructor(private listService: ListService, private router : Router) { }
 
   ngOnInit(): void {
     this.getLists();
@@ -23,10 +25,30 @@ export class ListsComponent implements OnInit {
 
   onSelect(list : List): void {
     this.selectedList = list;
-    this.messageService.add("ListComponent: Selected list id = " + list.collectionId)
   }
 
   getLists(): void {
     this.listService.getLists().subscribe(lists => this.lists = lists)
+  }
+
+  addList() : void {
+  
+    this.newList = {
+      collectionId: "",
+      ownerId: "random",
+      albumIds: [],
+      name: this.listname,
+      description: this.listdesc
+    }
+    this.listService.addList(this.newList).subscribe();
+    
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/collections']);
+  }); 
+  }
+
+  removeList(listname : String) : void {
+    console.log(listname);
+
   }
 }
