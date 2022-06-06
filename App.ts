@@ -1,10 +1,19 @@
 import express from 'express';
+import * as path from 'path';
+import * as logger from 'morgan';
+import * as mongodb from 'mongodb';
+import * as url from 'url';
 import * as bodyParser from 'body-parser';
+import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
 import { ListModel } from './model/ListModel';
 import { UserModel } from './model/UserModel';
 let  cors = require('cors');
+
+import GooglePassportObj from './GooglePassport';
+import * as passport from 'passport';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -14,11 +23,16 @@ class App {
   public Albums:AlbumModel;
   public List:ListModel;
   public User:UserModel;
+  public idGenerator:number;
+  public googlePassportObj:GooglePassportObj;
 
 
 
   //Run configuration methods on the Express instance.
   constructor() {
+    this.googlePassportObj = new GooglePassportObj();
+    this.idGenerator = 102;
+
     this.expressApp = express();
     this.middleware();
     this.routes();
@@ -29,14 +43,37 @@ class App {
 
   // Configure Express middleware.
   private middleware(): void {
-    this.expressApp.use(cors());
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+    this.expressApp.use(session({ secret: 'keyboard cat' }));
+    this.expressApp.use(cookieParser());
+    this.expressApp.use(passport.initialize());
+    this.expressApp.use(passport.session());
+  }
+
+  private validateAuth(req, res, next):void {
+    if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+    console.log("user is not authenticated");
+    res.redirect('/');
   }
 
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
+
+    router.get('/auth/google',
+    passport.authenticate('google', {scope: ['profile']}));
+
+    router.get('/auth/google/callback', 
+      passport.authenticate('google', 
+        { failureRedirect: '/' }
+      ),
+      (req, res) => {
+        console.log("successfully authenticated user and returned to callback page.");
+        console.log("redirecting to /");
+        res.redirect('/');
+      } 
+    );
 
     // Get all albums in the database 
     router.get('/albums', (req, res) => {
