@@ -62,40 +62,66 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/auth/google',
-    passport.authenticate('google', {scope: ['profile']}));
+    router.get('/auth/google', passport.authenticate('google', {scope: ['profile']}));
 
     router.get('/auth/google/callback', 
       passport.authenticate('google', 
-        { failureRedirect: '/' }
+        { failureRedirect: 'http://localhost:8080' }
       ),
       (req, res) => {
         console.log("successfully authenticated user and returned to callback page.");
-        console.log("redirecting to /");
+        console.log("redirecting");
+        let result = res.json();
+        let userId = result?['req']['user']['id'] : -1;
+        console.log('http://localhost:8080/app/user/' + userId)
         res.redirect('/');
       } 
     );
 
+    router.post('/app/user/', this.validateAuth, (req, res) => {
+      console.log(req.body);
+      let jsonObj = req.body;
+      this.User.model.create([jsonObj], (err) => {
+          if (err) {
+              console.log('User object creation failed');
+          }
+      });
+      res.send(this.idGenerator.toString());
+      this.idGenerator++;
+  });
+
+  router.delete('/app/user', this.validateAuth, (req, res) => {
+      console.log(req.body)
+      let userId = req.body.userId;
+      this.User.deleteUser(res, { userId: { $eq: userId } })
+  });
+
+  router.put('/app/user', this.validateAuth,  (req, res) => {
+      console.log('Updating user according to following request: ' + req.body)
+      console.log(req.body)
+      this.User.updateUser(res, req.body.userId, req.body.document)
+  });
+
     // Get all albums in the database 
-    router.get('/albums', (req, res) => {
+    router.get('/albums',this.validateAuth, (req, res) => {
       this.Albums.retrieveAllAlbums(res);
     });
 
     // Get all albums in a list
-    router.get('/lists/:listName/albums', (req, res) => {
+    router.get('/lists/:listName/albums',this.validateAuth, (req, res) => {
       const name = req.params.listName;
       this.List.retrieveAllAlbumsFromList(res, {name: name});
     });
 
     // Get an album 
-    router.get('/albums/search/:albumID', (req, res) => {
+    router.get('/albums/search/:albumID',this.validateAuth, (req, res) => {
       const spotifyID = req.params.albumID;
       console.log('Query single album with spotifyID: ' + spotifyID);
       this.Albums.retrieveOneAlbum(res, {spotifyID: spotifyID});
     });
 
     // Get an album 
-    router.get('/albums/search/name/:albumName', (req, res) => {
+    router.get('/albums/search/name/:albumName',this.validateAuth, (req, res) => {
       const name= req.params.albumName;
       console.log('Query single album with Album name: ' + name);
       this.Albums.retrieveOneAlbum(res, {name: name});
@@ -103,7 +129,7 @@ class App {
 
     // add an album to both albums collection and list collection
     // TODO: Make albumID or name past through body to then be queried to spotify
-    router.post('/album/add/:listName', (req, res) =>{
+    router.post('/album/add/:listName',this.validateAuth, (req, res) =>{
       const id = crypto.randomBytes(16).toString("hex");
       const name = req.params.listName;
       console.log("Adding an album to list: " + name); 
@@ -126,19 +152,19 @@ class App {
     })
 
     // GET to get all lists 
-    router.get('/lists', (req, res) => {
+    router.get('/lists',this.validateAuth, (req, res) => {
       this.List.retrieveAllLists(res);
     })
 
     // GET to get one list using the name of the list 
-    router.get('/lists/search/:collectionID', (req, res) => {
+    router.get('/lists/search/:collectionID',this.validateAuth, (req, res) => {
       let collectionID = req.params.collectionID;
       console.log('Query single list with ID: ' + collectionID);
       this.List.retrieveOneList(res, {collectionId: collectionID});
     });
 
     // POST to create a list 
-    router.post('/lists/create', (req, res) => {
+    router.post('/lists/create',this.validateAuth, (req, res) => {
       const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);
       const jsonObj = req.body;
@@ -158,7 +184,7 @@ class App {
     })
 
     // POST to create user
-    router.post('/users/createUser', (req, res) => {
+    router.post('/users/createUser',this.validateAuth, (req, res) => {
       const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);
       const jsonObj = req.body;
@@ -174,14 +200,14 @@ class App {
     })
     
     // GET a username
-    router.get('/users/search/:userId', (req, res) => {
+    router.get('/users/search/:userId',this.validateAuth, (req, res) => {
       let userId = req.params.userId;
       console.log('Query user with Id: ' + userId);
       this.User.retrieveOneUser(res, {userId: userId});
     });
 
     // GET all users
-    router.get('/users', (req, res) => {
+    router.get('/users',this.validateAuth, (req, res) => {
       console.log('Query for all users');
       this.User.retrieveAllUsers(res);
     })

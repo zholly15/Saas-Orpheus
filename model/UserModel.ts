@@ -18,18 +18,33 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                userId: Number,
                 email: String,
-                userId: String,
                 username: String,
                 password: String,
                 fName: String,
                 lName: String,
+                isActive: Boolean
             }, {collection: 'users'}
         );
     }
 
     public createModel(): void {
         this.model = mongooseConnection.model<IUserModel>("users", this.schema);
+    }
+
+    public deleteUser(response: any, filter: Object): any{
+        let query = this.model.deleteOne(filter)
+        query.exec((err, userResult) => {
+            response.json(userResult)
+        })
+    }
+
+    public updateUser(response:any, filter: Object, document:Object):any{
+        let query = this.model.find({isActive: true});
+        query.exec((err, itemArray)=> {
+            response.json(itemArray)
+        })
     }
 
     public retrieveAllUsers(response:any): any {
