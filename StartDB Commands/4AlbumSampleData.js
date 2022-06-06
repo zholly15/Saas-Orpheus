@@ -107,7 +107,7 @@ collection.insert(
     _id: "10",
     total_tracks: 41,
     release_date: "1996",
-    artist_name: "Les Misérables - 10th Anniversary Concert Cast",
+    artist_name: "Les Misérables",
     image_url: "https://i.scdn.co/image/ab67616d00001e022f1248549faa5010a0550e93"
 }
 )
