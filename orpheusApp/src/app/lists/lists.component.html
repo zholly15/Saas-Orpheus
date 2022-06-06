@@ -8,7 +8,7 @@
 <label for ="ListName">List Name: </label>
 <input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
 -->
-
+<html>
 <h1>My Collections</h1>
 <ul class="lists">
   <li *ngFor="let list of lists">
@@ -20,3 +20,4 @@
 </ul>
 
 <app-list-detail [list] = "selectedList"></app-list-detail>
+</html>

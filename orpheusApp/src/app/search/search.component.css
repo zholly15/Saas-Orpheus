@@ -101,5 +101,17 @@
     font-weight: bolder;
 }
 
+html {
+    margin:0px;
+    height:100%;
+    width:100%;
+    background:url('../../assets/guitar.jpg')no-repeat center center fixed; 
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+}
+
+
   
 
