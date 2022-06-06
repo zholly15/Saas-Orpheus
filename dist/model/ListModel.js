@@ -53,7 +53,7 @@ class ListModel {
         let query = this.model.updateOne({ name: album }, {});
     }
     deleteOneList(response, name) {
-        this.model.findOne(name).remove().exec((err, name) => {
+        this.model.deleteOne(name).exec((err, name) => {
             if (err)
                 response.status(400);
             else

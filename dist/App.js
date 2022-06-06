@@ -124,6 +124,9 @@ class App {
             });
             res.status(200).json(jsonObj);
         });
+        router.delete('/lists/delete/:collectionId', (req, res) => {
+            this.List.deleteOneList(res, req.params.collectionId);
+        });
         // POST to create user
         router.post('/users/createUser', (req, res) => {
             const id = crypto.randomBytes(16).toString("hex");
