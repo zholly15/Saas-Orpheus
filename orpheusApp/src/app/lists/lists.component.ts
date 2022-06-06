@@ -48,7 +48,7 @@ export class ListsComponent implements OnInit {
   }
 
   removeList(listname : String) : void {
-    console.log(listname);
+    this.listService.removeList(listname).subscribe();
 
   }
 }
