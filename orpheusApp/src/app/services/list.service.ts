@@ -38,4 +38,8 @@ export class ListService {
       );
   }
 
+  public removeList(list: String) {
+    return this.httpClient.delete(this.endPoint + `lists/delete/${list}` , this.httpOptions);
+  }
+
 }

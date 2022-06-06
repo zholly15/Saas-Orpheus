@@ -9,18 +9,17 @@
 <input id = "ListName" [(ngModel)]="listInfo.name" placeholder="Name">
 -->
 <html>
-<h1 class="collection-header">My Collections</h1>
-<div class="collection-body">
-  <ul class="lists">
-    <li *ngFor="let list of lists">
-      <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)" class="album-button">
-        <span class="badge"></span>
-        <span class="name"> {{list.name}}</span>
-      </button>
-      <button class="delete-button" (click) = "removeList(list.collectionId)">X</button>
-    </li>
-  </ul>
-</div>
+<h1>My Collections</h1>
+<ul class="lists">
+  <li *ngFor="let list of lists">
+    <button [class.selected]="list === selectedList" type="button" (click) = "onSelect(list)">
+      <span class="badge"></span>
+      <span class="name"> {{list.name}}</span>
+    </button>
+    <br><br>
+    <button (click) = "removeList(list.collectionId)">X</button>
+  </li>
+</ul>
 
 <app-list-detail [list] = "selectedList"></app-list-detail>
 

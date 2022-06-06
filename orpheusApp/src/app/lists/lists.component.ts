@@ -41,14 +41,18 @@ export class ListsComponent implements OnInit {
       description: this.listdesc
     }
     this.listService.addList(this.newList).subscribe();
-    
+    this.reloadComponent();
+  }
+
+  removeList(listId : String) : void {
+    console.log(listId)
+    this.listService.removeList(listId).subscribe();
+    this.reloadComponent();
+  }
+
+  reloadComponent() : void {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/collections']);
   }); 
-  }
-
-  removeList(listname : String) : void {
-    console.log(listname);
-
   }
 }

@@ -48,10 +48,7 @@ class UserModel {
 
     public deleteOneUser(response:any, name:Object) : any {
         this.model.findOne(name).remove().exec((err, name) => {
-            if (err)
-                response.status(400).json(name);
-            else
-                response.status(200).json(name);
+          response.json(name);
         });
     }
 
