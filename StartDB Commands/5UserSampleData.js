@@ -4,7 +4,7 @@ collection.remove({})
 collection.insert(
 {
     email: "fakeEmail1.com",
-    userId: "1",
+    userid: 1,
     username: "fakeUser1",
     password: "password",
     fName: "fake",
@@ -14,7 +14,7 @@ collection.insert(
 collection.insert(
 {
     email: "fakeEmail2.com",
-    userId: "2",
+    userid: 2,
     username: "fakeUser2",
     password: "password",
     fName: "fake",
@@ -24,7 +24,7 @@ collection.insert(
 collection.insert(
 {
     email: "fakeEmail3.com",
-    userId: "3",
+    userid: 115045493315006296598,
     username: "fakeUser3",
     password: "password",
     fName: "fake",

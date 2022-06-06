@@ -18,7 +18,7 @@ class GooglePassport {
         passport.use(new GoogleStrategy({
                 clientID: this.clientId,
                 clientSecret: this.secretId,
-                callbackURL: "http://localhost:8080/auth/google/callback",
+                callbackURL: "http://localhost:4200/auth/google/callback",
                // passReqToCallback : true
 //                profileFields: ['id', 'displayName', 'emails']
             },

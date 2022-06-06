@@ -62,21 +62,27 @@ class App {
   private routes(): void {
     let router = express.Router();
 
+
     router.get('/auth/google', passport.authenticate('google', {scope: ['profile' ]}));
 
-    router.get('/auth/google/callback', 
-      passport.authenticate('google', 
-        { failureRedirect: 'http://localhost:4200' }
-      ),
-      (req, res) => {
+    router.get('/auth/google/callback',
+    passport.authenticate(
+        'google',
+        { failureRedirect: 'http://localhost:8080' }
+    ),
+    (req, res) => {
         console.log("successfully authenticated user and returned to callback page.");
         console.log("redirecting");
-        let result = res.json();
+        let result = res;
         let userid = result['req']['user']!['id'];
-        console.log('http://localhost:8080/app/user/' + userid)
-        res.redirect('/');
-      } 
-    );
+        console.log('http://localhost:8080/app/user/' + userid);
+
+
+        res.redirect(`http://localhost:4200/app/user/`+userid);
+
+
+    }
+);
 
     router.post('/app/user/', this.validateAuth, (req, res) => {
       console.log(req.body);
@@ -217,6 +223,7 @@ class App {
     })
 
     this.expressApp.use('/', router);
+
   }
 
 }

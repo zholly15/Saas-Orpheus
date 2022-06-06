@@ -72,13 +72,13 @@ class App {
     routes() {
         let router = express_1.default.Router();
         router.get('/auth/google', passport_1.default.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'http://localhost:4200' }), (req, res) => {
+        router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'http://localhost:8080' }), (req, res) => {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
-            let result = res.json();
+            let result = res;
             let userid = result['req']['user']['id'];
             console.log('http://localhost:8080/app/user/' + userid);
-            res.redirect('/');
+            res.redirect(`http://localhost:4200/app/user/` + userid);
         });
         router.post('/app/user/', this.validateAuth, (req, res) => {
             console.log(req.body);
