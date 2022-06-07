@@ -7,5 +7,18 @@ html {
     -o-background-size:cover;
     -moz-background-size:cover;
     background-size:cover;
+    color: white;
+}
+
+body .user-info {
+    height: 100%;
+    width: 100%;
+    font-size: 4em;
+    font-weight: bolder;
+    color: white;
+}
+
+h1{
+    color: white;
 }
 

@@ -89,3 +89,34 @@ describe("Test /lists/search result", function (){
 
     
 }) 
+
+describe("Test /lists/create result", function (){
+    var requestResult;
+    var response;
+    
+    before(function (done){
+        chai.request('http://localhost:8080')
+                        .post("/lists/create")
+                        .send({collectionId: '',
+                        ownerId: 'random',
+                        albumIds: [],
+                        name: 'new list',
+                        description: 'yes'})
+                        .end(function (err,res){
+                            requestResult = res.body;
+                            response = res
+                    expect(err).to.be.null
+                    expect(res).to.have.status(200);
+                    response.body.should.have.property('collectionId');
+                    response.body.should.have.property('ownerId');
+                    response.body.should.have.property('albumIds');
+                    response.body.should.have.property('name');
+                    response.body.should.have.property('description');
+                    done();
+        });
+    });
+
+    it("List should be added to the database successfully", function(){
+        expect(response).to.have.status(200);
+    })
+}) 

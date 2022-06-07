@@ -65,12 +65,15 @@ class ListModel {
         let query = this.model.updateOne({name: album}, {})
     }
 
-    public deleteOneList(response:any, name:Object) : any {
-        this.model.deleteOne(name).exec((err, name) => {
-            if (err)
+    public deleteOneList(response:any, id:string) : any {
+        this.model.deleteOne({collectionId:id}).exec((err, name) => {
+            if (err){
+                console.log("error");
                 response.status(400);
-            else
+            }
+            else{
                 response.status(200).json(name);
+            }
         });
     }
 

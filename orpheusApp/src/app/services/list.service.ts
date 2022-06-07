@@ -38,8 +38,12 @@ export class ListService {
       );
   }
 
-  public removeList(list:String) {
-    return this.httpClient.delete(this.endPoint + 'lists/remove/' + list, this.httpOptions);
+  public removeList(listId:String) {
+    return this.httpClient.delete(this.endPoint + 'lists/delete/' + listId, this.httpOptions);
+  }
+
+  public getAlbumById(AlbumId:String){
+    return this.httpClient.get(this.endPoint + "albums/search/" + AlbumId, this.httpOptions);
   }
 
 }
