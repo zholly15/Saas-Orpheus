@@ -35,9 +35,11 @@ const AlbumModel_1 = require("./model/AlbumModel");
 const crypto = __importStar(require("crypto"));
 const ListModel_1 = require("./model/ListModel");
 const UserModel_1 = require("./model/UserModel");
-let cors = require('cors');
 const GooglePassport_1 = __importDefault(require("./GooglePassport"));
 const passport_1 = __importDefault(require("passport"));
+const options = {
+    origin: '*'
+};
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
@@ -71,14 +73,15 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express_1.default.Router();
-        router.get('/auth/google', passport_1.default.authenticate('google', { scope: ['profile'] }));
+        router.get('/auth/google', passport_1.default.authenticate('google', { scope: ['profile', 'email'] }));
         router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'http://localhost:8080' }), (req, res) => {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
             let result = res;
             let userid = result['req']['user']['id'];
-            console.log('http://localhost:8080/app/user/' + userid);
-            res.redirect(`http://localhost:4200/app/user/` + userid);
+            console.log("user accesstoken" + req.user);
+            //console.log('http://localhost:8080/app/user/' + userid);
+            res.redirect("http://localhost:4200/");
         });
         router.post('/app/user/', this.validateAuth, (req, res) => {
             console.log(req.body);

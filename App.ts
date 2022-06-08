@@ -10,10 +10,16 @@ import {AlbumModel} from './model/AlbumModel';
 import * as crypto from 'crypto';
 import { ListModel } from './model/ListModel';
 import { UserModel } from './model/UserModel';
-let  cors = require('cors');
+import * as cors from 'cors';
 
 import GooglePassportObj from './GooglePassport';
 import passport from 'passport';
+
+
+
+const options: cors.CorsOptions = {
+  origin: '*'
+};
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -32,7 +38,6 @@ class App {
   constructor() {
     this.googlePassportObj = new GooglePassportObj();
     this.idGenerator = 102;
-
     this.expressApp = express();
     this.middleware();
     this.routes();
@@ -62,8 +67,7 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-
-    router.get('/auth/google', passport.authenticate('google', {scope: ['profile' ]}));
+    router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
     router.get('/auth/google/callback',
     passport.authenticate(
@@ -75,12 +79,9 @@ class App {
         console.log("redirecting");
         let result = res;
         let userid = result['req']['user']!['id'];
-        console.log('http://localhost:8080/app/user/' + userid);
-
-
-        res.redirect(`http://localhost:4200/app/user/`+userid);
-
-
+        console.log("user accesstoken" + req.user);
+        //console.log('http://localhost:8080/app/user/' + userid);
+        res.redirect("http://localhost:4200/");
     }
 );
 

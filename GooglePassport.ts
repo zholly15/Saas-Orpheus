@@ -9,7 +9,6 @@ class GooglePassport {
 
     clientId: string;
     secretId: string;
-    userId: number | undefined;
      
     constructor() { 
         this.clientId = googleAppAuth.id;
@@ -18,11 +17,11 @@ class GooglePassport {
         passport.use(new GoogleStrategy({
                 clientID: this.clientId,
                 clientSecret: this.secretId,
-                callbackURL: "http://localhost:4200/auth/google/callback",
+                callbackURL: "http://localhost:8080/auth/google/callback",
                // passReqToCallback : true
-//                profileFields: ['id', 'displayName', 'emails']
+                profileFields: ['id', 'displayName', 'emails']
             },
-            (accessToken, refreshToken, profile: any, done) => {
+            (accessToken, refreshToken, profile, done) => {
                 console.log("inside new password google strategy");
                 process.nextTick( () => {
                     console.log('validating google profile:' + JSON.stringify(profile));
@@ -32,8 +31,6 @@ class GooglePassport {
                     // this.email = profile.emails[0].value;
                     profile.ac = accessToken;
                     profile.re = refreshToken;
-                    this.userId = profile.id;
-                    
                     return done(null, profile);
                 }); 
             }
