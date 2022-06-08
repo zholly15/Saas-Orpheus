@@ -52,7 +52,6 @@ class App {
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     this.expressApp.use(session({ secret: 'keyboard cat' }));
     this.expressApp.use(cookieParser());
-
     this.expressApp.use(passport.initialize());
     this.expressApp.use(passport.session());
   }
@@ -60,7 +59,7 @@ class App {
   private validateAuth(req, res, next):void {
     if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
     console.log("user is not authenticated");
-    res.redirect('/');
+    res.redirect('/failure');
   }
 
   // Configure API endpoints.
@@ -72,7 +71,7 @@ class App {
     router.get('/auth/google/callback',
     passport.authenticate(
         'google',
-        { failureRedirect: 'http://localhost:8080' }
+        { failureRedirect: '/failure' }
     ),
     (req, res) => {
         console.log("successfully authenticated user and returned to callback page.");
@@ -81,9 +80,11 @@ class App {
         let userid = result['req']['user']!['id'];
         console.log("user accesstoken" + req.user);
         //console.log('http://localhost:8080/app/user/' + userid);
-        res.redirect("http://localhost:4200/");
-    }
-);
+        res.redirect("/index.html");
+
+  });
+
+
 
     router.post('/app/user/', this.validateAuth, (req, res) => {
       console.log(req.body);
@@ -96,6 +97,11 @@ class App {
       res.send(this.idGenerator.toString());
       this.idGenerator++;
   });
+
+  router.get("/failure", (req,res) => {
+    res.send("You are not authenticated!")
+
+  })
 
   router.delete('/app/user', this.validateAuth, (req, res) => {
       console.log(req.body)
@@ -220,12 +226,16 @@ class App {
     })
 
     router.get('/', (req,res)=>{
-      res.send("Welcome to the Orpheus API");
+      res.redirect("/auth/google")
     })
 
-    this.expressApp.use('/', router);
+  
 
+    this.expressApp.use('/', router);
+    this.expressApp.use(this.validateAuth);
+    this.expressApp.use('/', express.static(__dirname+'/angularDist'));
   }
+
 
 }
 

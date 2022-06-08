@@ -68,20 +68,20 @@ class App {
             return next();
         }
         console.log("user is not authenticated");
-        res.redirect('/');
+        res.redirect('/failure');
     }
     // Configure API endpoints.
     routes() {
         let router = express_1.default.Router();
         router.get('/auth/google', passport_1.default.authenticate('google', { scope: ['profile', 'email'] }));
-        router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'http://localhost:8080' }), (req, res) => {
+        router.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: '/failure' }), (req, res) => {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
             let result = res;
             let userid = result['req']['user']['id'];
             console.log("user accesstoken" + req.user);
             //console.log('http://localhost:8080/app/user/' + userid);
-            res.redirect("http://localhost:4200/");
+            res.redirect("/index.html");
         });
         router.post('/app/user/', this.validateAuth, (req, res) => {
             console.log(req.body);
@@ -93,6 +93,9 @@ class App {
             });
             res.send(this.idGenerator.toString());
             this.idGenerator++;
+        });
+        router.get("/failure", (req, res) => {
+            res.send("You are not authenticated!");
         });
         router.delete('/app/user', this.validateAuth, (req, res) => {
             console.log(req.body);
@@ -203,9 +206,11 @@ class App {
             this.User.retrieveAllUsers(res);
         });
         router.get('/', (req, res) => {
-            res.send("Welcome to the Orpheus API");
+            res.redirect("/auth/google");
         });
         this.expressApp.use('/', router);
+        this.expressApp.use(this.validateAuth);
+        this.expressApp.use('/', express_1.default.static(__dirname + '/angularDist'));
     }
 }
 exports.App = App;
